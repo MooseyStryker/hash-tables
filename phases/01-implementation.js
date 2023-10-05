@@ -10,7 +10,7 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
   constructor(numBuckets = 8) {
     this.capacity = numBuckets
-    this.data = new KeyValuePair(numBuckets).fill(null)
+    this.data = new Array (numBuckets).fill(null)
     this.count = 0
   }
 
