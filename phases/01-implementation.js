@@ -55,17 +55,39 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
 
   read(key) {
-    
+    let index = this.hashMod(key)
+    let curr = this.data[index]
+    while (curr) {
+      if(curr.key === key) {
+        return curr.value
+      } else {
+        curr = curr.next
+      }
+    }
   }
 
 
   resize() {
-    // Your code here
+    const oldArray = this.data
+    this.capacity *= 2
+    this.data = new Array(this.capacity).fill(null)
+    this.count = 0
+    for (let i = 0; i < oldArray.length; i++){
+      console.log("This should be our old Array:", oldArray[i])
+      let curr = oldArray[i]
+      while (curr){
+        this.insert(curr.key, curr.value)
+        curr = curr.next
+      }
+
+
+    }
+
   }
 
 
   delete(key) {
-    // Your code here
+
   }
 }
 
