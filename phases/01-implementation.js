@@ -20,7 +20,7 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
     for (let i = 0; i < key.length; i++) {
       hashValue += key.charCodeAt(i);
     }
-
+    // console.log(hashValue)
     return hashValue;
   }
 
@@ -31,12 +31,31 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
 
   insert(key, value) {
-    // Your code here
+    const index = this.hashMod(key)
+
+    let curr = this.data[index]
+
+    while(curr) {
+      if(curr.key === key) {
+        curr.value = value
+        return;
+      } else {
+        curr = curr.next
+      }
+    }
+      // console.log(this.data)
+      let newNode = new KeyValuePair(key, value)
+
+      newNode.next = this.data[index]
+
+      this.data[index] = newNode
+
+      this.count++
   }
 
 
   read(key) {
-    // Your code here
+    
   }
 
 
